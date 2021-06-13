@@ -155,6 +155,10 @@ input::placeholder{
   left:50%;
   transform: translate(-50%,-50%);
   z-index: 100;
+  animation: modalAnime 0.3s ease-in-out;
+}
+@keyframes modalAnime {
+  from{top:40%;opacity: 0;}to{top: 50%;opacity: 1;}
 }
 .modal-container{
   animation: modal-animate 0.1s ease-in-out;
