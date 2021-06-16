@@ -36,6 +36,9 @@ const AppProvider = ({children}) =>{
     const handleInput = (e) =>{
         e.preventDefault()
         if(input){
+            if(input <= 0){
+                setInputError({open: true, content:"Number can't be less than 1"})
+            }
             loadItems(parseInt(input))
         }else{
             setInputError({open:true,content:"No input is given!"})
@@ -45,13 +48,19 @@ const AppProvider = ({children}) =>{
     const loadItems = (n) =>{
         let a = []
         let verifiedInput = n
-        if(n > 1000){
-            setInputError({open:true,content:"Maximum 1000 images can be loaded!"})
-            verifiedInput = 1000
+        if(n > 500){
+            setInputError({open:true,content:"Maximum 500 images can be loaded!"})
+            verifiedInput = 500
         }
 
         if(message.type !== "Network issue"){
+            if(input > 0){
                 setMessage({...message,type:"success",text:`Here is your ${verifiedInput} ${verifiedInput>1 ? "images" : "image"} result`})
+            }else{
+                setMessage((prev)=>{
+                    return {...prev, text:"No images loaded"}
+                })
+            }
             }
 
         const listRange = prevInput.modified+verifiedInput
