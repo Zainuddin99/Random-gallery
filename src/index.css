@@ -225,6 +225,55 @@ input::placeholder{
 .nav-btn:active{
     background-color: rgb(34, 61, 70);
 }
+.page-details{
+  font-size: 1.4rem;
+  font-weight: bold;
+  padding: 10px;
+  color: rgb(151, 82, 18);
+  background-color: yellow;
+}
+.pagination.active{
+  background-color: yellow;
+}
+.pagination-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+.page-details{
+  width: fit-content;
+  margin-bottom: 30px;
+}
+.page-nav-btn{
+  font-size: 60px;
+  margin: auto 20px;
+  cursor: pointer;
+  background-color:rgb(224, 240, 240);
+}
+.page-nav-btn:hover{
+  background-color:rgb(193, 231, 231);
+}
+.navigate, .jump-to{
+  display: flex;
+}
+.jump-to{
+  font-size: 17px;
+  color: chocolate;
+  font-weight: bold;
+}
+.jump-to select{
+  font-size: 23px;
+  height: fit-content;
+  margin: auto 10px;
+  background-color:black;
+  border: 1px solid white;
+  color: white;
+  cursor: pointer;
+}
+.jump-to option{
+  font-size: 16px;
+}
 
 
 .tooltip{
@@ -394,5 +443,18 @@ form button:hover{
 .nav-btn:active{
   background-color: black;
   color: white;
+}
+.page-nav-btn{
+  font-size: 40px;
+  margin: auto 10px;
+}
+.jump-to{
+  font-size: 13px;
+}
+.jump-to select{
+  font-size: 20px;
+}
+.jump-to option{
+  font-size: 16px;
 }
 }

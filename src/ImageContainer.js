@@ -3,12 +3,12 @@ import { useGlobalContext } from './context'
 import EachImage from './EachImage'
 
 function ImageContainer() {
-    const {array} = useGlobalContext()
+    const {currentArray} = useGlobalContext()
 
     return (
         <div className="image-container">
             {
-                array.map((image,index)=>{
+                currentArray.map((image,index)=>{
                     return <EachImage key={index+1} index={index} image={image}/>
                 })
             }

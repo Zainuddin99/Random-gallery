@@ -7,6 +7,7 @@ import Form from './Form'
 import ErrorModal from './ErrorModal'
 import Message from './Message'
 import Header from './Header'
+import Pagination from './Pagination'
 
 
 function App() {
@@ -27,6 +28,8 @@ function App() {
         <Message/>
 
         <ImageContainer/>
+
+        <Pagination/>
 
         { modal.open && <Modal/> }
         </>

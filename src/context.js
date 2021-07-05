@@ -11,11 +11,13 @@ const AppProvider = ({children}) =>{
     const [inputError, setInputError] = useState({open:false,content:""})
     const [prevInput, setPrevInput] = useState({modified:0, current:0})
     const [message,setMessage] = useState({text:"",type:"",isOffline:false})
+    const [pagination, setPagination] = useState({perPageItems:30, currentPage:1, totalPage:1})
+    const [currentArray, setCurrentArray] = useState([])
 
-    const dataLength = array.length-1
+    const dataLength = currentArray.length-1
 
     useEffect(()=>{
-        loadItems(12)
+        loadItems(30)
         setMessage((prev)=>{
             return {...prev,text:"Here are some Random pictures for you",type:"first load"}
         })
@@ -54,7 +56,9 @@ const AppProvider = ({children}) =>{
         }
 
         if(message.type !== "Network issue"){
-                setMessage({...message,type:"success",text:`Here is your ${verifiedInput} ${verifiedInput>1 ? "images" : "image"} result`})
+                setMessage(message =>{
+                    return {...message,type:"success",text:`Here is your ${verifiedInput} ${verifiedInput>1 ? "images" : "image"} result`}
+                })
             }
 
         const listRange = prevInput.modified+verifiedInput
@@ -117,10 +121,28 @@ const AppProvider = ({children}) =>{
             loadItems(12)
         }
         }
+    
+    useEffect(()=>{
+        setPagination((prev)=>{
+            const numberOfPage = Math.ceil(array.length/prev.perPageItems)
+            return {...prev, totalPage:numberOfPage}
+        })
+        handleCurrentArray()
+    },[array])
+
+    useEffect(()=>{
+        handleCurrentArray()
+    },[pagination.currentPage])
+
+    const handleCurrentArray = () =>{
+        const lastIndex = pagination.currentPage * pagination.perPageItems
+        const firstIndex = lastIndex - pagination.perPageItems
+        setCurrentArray(array.slice(firstIndex, lastIndex))
+    }
 
     return (
     <myContext.Provider value={{state, dispach, input, handleInput, setInput, array, modal, 
-        setModal, prevIndex, nextIndex, inputError, setInputError, message, setMessage, loadItems, changeImages}}>
+        setModal, prevIndex, nextIndex, inputError, setInputError, message, setMessage, loadItems, changeImages, pagination,setPagination, currentArray}}>
         {children}
     </myContext.Provider>
     )
