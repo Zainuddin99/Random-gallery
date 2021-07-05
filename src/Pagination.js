@@ -3,7 +3,7 @@ import { useGlobalContext } from './context'
 import {FcNext, FcPrevious} from 'react-icons/fc'
 
 function Pagination() {
-    const {pagination,setPagination} = useGlobalContext() 
+    const {pagination,setPagination, dispach} = useGlobalContext() 
     const [pages, setPages] = useState([])
     const [selectedValue, setSelectedValue] = useState(1)
 
@@ -17,7 +17,7 @@ function Pagination() {
 
     useEffect(()=>{
         setPagination((prev)=>{
-            return {...prev, currentPage:selectedValue}
+            return {...prev, currentPage:Number(selectedValue)}
         })
     }, [selectedValue])
 
@@ -40,7 +40,10 @@ function Pagination() {
                         return prev
                     })
                 }
-                } />
+                }
+                onMouseOut={()=>dispach({text:"close"})} onMouseOver={(e)=>dispach({text:"Previous page",e})} />
+
+
                 <FcNext className="page-nav-btn" onClick={()=>{
                     setPagination((prev)=>{
                         if(prev.currentPage < prev.totalPage){
@@ -49,7 +52,10 @@ function Pagination() {
                         return prev
                     })
                 }
-                } />
+                } 
+                onMouseOut={()=>dispach({text:"close"})} onMouseOver={(e)=>dispach({text:"Next Page",e})} />
+
+
                 <div className="jump-to">
                     <p>Jump to page</p>
                 <select value={selectedValue} onChange={(e)=>setSelectedValue(e.target.value)}>

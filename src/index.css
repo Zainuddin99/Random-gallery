@@ -452,9 +452,18 @@ form button:hover{
   font-size: 13px;
 }
 .jump-to select{
-  font-size: 20px;
+  font-size: 23px;
 }
 .jump-to option{
   font-size: 16px;
 }
+}
+.wrapper{
+  transition: 1s ease-in-out;
+}
+.wrapper-enter{
+  transform: scale(0.7);
+}
+.wrapper-enter-active{
+  transform: scale(1);
 }

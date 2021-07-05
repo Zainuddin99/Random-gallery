@@ -118,14 +118,14 @@ const AppProvider = ({children}) =>{
         if(prevInput.current){
             loadItems(prevInput.current)
         }else{
-            loadItems(12)
+            loadItems(30)
         }
         }
     
     useEffect(()=>{
         setPagination((prev)=>{
             const numberOfPage = Math.ceil(array.length/prev.perPageItems)
-            return {...prev, totalPage:numberOfPage}
+            return {...prev, totalPage:numberOfPage, currentPage:1}
         })
         handleCurrentArray()
     },[array])
