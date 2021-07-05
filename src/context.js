@@ -50,9 +50,9 @@ const AppProvider = ({children}) =>{
     const loadItems = (n) =>{
         let a = []
         let verifiedInput = n
-        if(n > 1000){
-            setInputError({open:true,content:"Maximum 1000 images can be loaded!"})
-            verifiedInput = 1000
+        if(n > 5000){
+            setInputError({open:true,content:"Maximum 5000 images can be loaded!"})
+            verifiedInput = 5000
         }
 
         if(message.type !== "Network issue"){
